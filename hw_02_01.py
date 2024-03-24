@@ -1,8 +1,6 @@
 import queue
 import time
 import random
-import sys
-import select
 
 def generate_request(request_queue, request_id):
     """Генерує нову заявку з унікальним ідентифікатором та додає її до черги."""
@@ -28,11 +26,6 @@ def main():
 
     try:
         while True:
-            # Перевірка наявності вводу від користувача
-            if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
-                line = input()
-                break
-
             # Генерація та обробка заявок
             generate_request(request_queue, request_id)
             request_id += 1
@@ -41,7 +34,7 @@ def main():
     except KeyboardInterrupt:
         pass
 
-    print("Програма завершена.")
+    print("\nПрограма завершена.")
 
 if __name__ == "__main__":
     main()
